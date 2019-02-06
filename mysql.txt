@@ -1,0 +1,165 @@
+MySql存储引擎：	
+	5.5以后默认的存储引擎是INNODB存储引擎提供了具有提交、回滚和崩溃恢复能力的事务安全。但是对比MyISM的存储引擎，写的处理效率差一些并且会占用更多的磁盘空间已保留数据和索引
+	MYISAM它不支持事务，也不支持外键，尤其是访问速度快，对事务完整性没有要求以SELECT、INSERT 为主的应用基本都可以使用这个引擎来创建表。每个MyISAM在磁盘上存储成三个文件，其中文件名和表明都相同，但是扩展名分别为：.frm(存储表定义)  MYD(MYData,存储数据) MYI（MYIndex,存储索引）
+mysql databases;查询数据库
+create database xxx; 创建数据库
+drop database xxx;删除数据库
+use xxx; 使用哪个数据库
+show tables ; 在use 选择后显示数据库中的表；
+create table xxx (id int , name varchar(25), age int, email varchar(255));  创建表
+desc xxx; 列出表结构
+alter table xxx modify  xxx(更改前的数据类型)  xxx（更改后的数据类型）更改某个表中的字段类型
+alter table xxx add xxx(字段名称)  xxx(数据类型)： 在表中添加某个字段
+alter table xxx drop xxx(字段名称): 删除表中的某个字段
+
+添加记录：insert into xxx (xxx,xxx,xxx,xxx,) values (xxx,xxx,xxx,xxx),(xxx,xxx,xxx,xxx);
+更新记录：update xxx set xxx=yyy (更改xxx字段内容为yyy) where  update条件；
+删除记录： delete from xxxx（删除的表）where xxx=yyy（删除条件）；(表结构还在，数据可以找回)
+	  truncate table xxxx（删除表）（整个记录删除，然后再创建一个同样的新表，执行的速度比delete快，数据不能找回）
+
+刷新数据库 ： flush privileges;
+
+更改数据库密码：
+	A: mysqladmin -u root -p password xxxxxx;
+	B: update user set authentication_string=password('xxxxxx') where user='root' and Host='localhost';
+
+IFNULL()：如果 expr1 不是 NULL，IFNULL() 返回 expr1，否则它返回 expr2。IFNULL()返回一个数字或字符串值，取决于它被使用的上下文环境。
+
+DESC 降序  	ASC 升序   （select * from xxx  ORDER BY xxx DESC）
+
+COUNT(*):统计指定列不为NULL的记录行数；
+MAX():计算指定列的最大值
+MIN():计算指定列的最小值
+SUM():计算指定列的数值和
+AVG():计算指定列的平均值
+
+group by + group_concat():  SELECT department,GROUP_CONCAT(`name`)  FROM employee GROUP BY department;
+
+group by + having(条件判断) :SELECT department, GROUP_CONCAT(salary), SUM(salary)  from employee GROUP BY department HAVING SUM(salary) >= 9000;
+
+having跟where:
+	1、having是在分组后对数据进行过滤；
+	2、where是在分组前对数据进行过滤；
+	3、having后面可以使用分组函数（统计函数）
+	4、where后面不可以使用分组函数
+	5、where是对分组前记录的条件，如果某行记录不满足where子句的条件，那么这行记录不会参加分组；而having是对分组后的数据约束
+
+limit: SELECT * FROM employee LIMIT x,y;  显示从第X条数据开始，显示Y条数据 （实现分页， [当前页-1*每页多少条数据]）
+
+创建外键：ALTER TABLE score ADD CONSTRAINT sc_st_fk FOREIGN KEY (sid) REFERENCES stu(id);
+
+UNION: 合并时去除重复记录 ；  UNION ALL 合并时不去除重复记录 ： SELECT * FROM a UNION  SELECT * FROM b;
+
+ INNER(可省略) JOIN  ----- on  ---- 内连接:  SELECT  st.id,st.name,sc.score  FROM stu st JOIN score sc ON st.id = sc.sid WHERE sc.score > 60;
+
+外连接： 左连接：查询左边表中的全部信息，右边表中满足条件的信息；
+	 	SELECT * FROM stu st LEFT OUTER JOIN score sc ON st.id =sc.sid
+              右连接：查询右边表中的全部信息，左边表中满足条件的信息；
+		SELECT * FROM stu st RIGHT JOIN score sc ON st.id = sc.sid;
+多表联查：
+	99连接法：SELECT st.`name`,sc.score,c.`name` as subject FROM stu st,score sc, course cWHERE st.id = sc.sidAND sc.cid = c.cid;
+	内连接：SELECT st.`name`,sc.score,c.`name` as subject FROM stu st JOIN score sc ON st.id = sc.sidJOIN course c ON sc.cid = c.cid;
+
+函数：
+   concat(s1,s2,.......)：传入的字符；连接成一个字符串； 任何字符串与null进行连接结构都是null
+   insert(str, x, y, instr) 在指定的x位置开始把y个字符换成insert；
+   lower(str)和upper(str)将字符串转成小写或大写
+   left（str,x）和right(str,x)分别返回字符串最左边的x个字符和最右边的X个字符，如果第二个参数为null,那么不返回任何字符
+   lpad(str,len,inser)，rpad(str,len,inser)用字符串pad对str最左边或最右边进行填充，直接到长度为n个字符长度，
+   ltrim(str)和rtrim(str)去掉字符串当中最左侧和最右侧的空格
+   trim（str）去空格
+   repeat(str,count) str拼接count次
+   replace(str,from_str,to_str) 把字符中的from_str替换成to_str
+   substr(str, x, y)将str从x位置开始截取Y个字符
+
+  abs(x)求绝对值
+  ceil(x)小数不为零部分向上取整，既向上取最近的整数 （1.1 --》 2）
+  floor(x)小数不为零部分向下取整，既向下取最近的整数 （1.1 --》 1）
+  mod(x,y）返回x/y的模
+  rand()返回0-1的随机值
+
+  开启事务：start transaction；
+  提交事务：commit；
+  事务回滚： rollback
+查看事务的隔离级别：select @@global.tx_isolation,@@tx_isolation;
+	查看当前会话隔离级别：select @@tx_isolation;
+	查看系统当前隔离级别：select @@global.tx_isolation;
+修改全局的事务隔离级别： set global transaction isolation level read committed;
+修改当前会话的事务隔离级别：set session transaction isolatin level repeatable read;
+
+1.read uncommitted
+
+?
+
+可以看到未提交的数据（脏读）
+
+
+?
+
+2.read committed
+
+?
+
+读取提交的数据。但是，可能多次读取的数据结果不一致（不可重复读，幻读）。用读写的观点就是：读取的行数据，可以写。
+
+?
+
+
+3.repeatable read(MySQL默认隔离级别)
+
+?
+
+可以重复读取，但有幻读。
+	读写观点：读取的数据行不可写，但是可以往表中新增数据。在MySQL中，其他事务新增的数据，看不到，不会产生幻读。采用多版本并发控制（MVCC）机制解决幻读问题。
+
+?
+
+
+4.serializable
+
+?
+
+可读，不可写。像java中的锁，写数据必须等待另一个事务结束。
+
+delimiter语句将标准分隔符 分号（;）更改为 $$
+
+创建存储过程：CREATE PROCEDURE 名称() BEGIN 语句   declare 变量名 END $$ ;
+调用存储过程:  CALL 名称（）；
+
+指定查看数据库中的存储过程: SHOW CREATE PROCEDURE WHERE db="数据库名"
+查看指定存储过程的数据源 ： SHOW CREATE PROCEDURE 存储过程名
+
+删除存储过程： drop PROCEDURE  名称
+
+存储过程中声明变量：CREATE PROCEDURE 名称() BEGIN 语句   declare 变量名  END $$ ;
+
+存储过程中声明变量，修改变量：CREATE PROCEDURE 名称() BEGIN 语句;   declare 变量名;  set  变量名; END $$ ;
+	使用SELECT INTO 语句 将查询的结果分配给一个变量  SELECT 	COUNT(*) INTO 变量名 from 表名
+
+---------------------
+delimiter $$
+CREATE procedure insert_emp(in startNum int, in max_num int)
+
+BEGIN
+
+DECLARE i int default 0;
+
+-- 默认情况是自动提交sql
+set autocommit = 0; -- 不让提交数据
+
+repeat -- 循环
+set  i = i + 1;
+insert into emp VALUES(startNum + i,rand_str(5),floor(10+RAND()*30));
+UNTIL i = max_num  -- 当到达什么值时退出循环
+end repeat;
+
+COMMIT; -- 整体提交所有数据
+end$$
+
+
+
+delimiter ;
+
+--------------------
+
+explain: 用来查看索引是否正在被使用，并且输出其使用的索引的信息
