@@ -1,0 +1,47 @@
+通过./zkCli.sh 打开zk的客户端进行命令行后台：
+	ls  /  查看目录
+	get / 获取节点数据
+启动服务./zkServer.sh start 启动服务
+
+acl 权限控制
+
+getAcl  /imooc/abc 查看权限
+
+setAcl  /imooc/abc world:anyone:crwa 更改权限
+
+addauth digest imooc:imooc: 注册一个用户
+
+world: world下只有一个id,即只有一个用户，也就是 anyone,那么组合的写法就是world：anyone:[permissions]
+
+auth: 代表认证登录，需要注册用户有权限就可以，形式为，auth:user:password:[permissions]
+
+digest: 需要对密码加密才能访问，组合形式为;digest:username:BASE64(SHA1(password)):[permissions]
+
+ip:当设置为ip指定的ip地址，此时限制ip进行访问，比如ip:192.168.1.1:[permissions]
+
+super :代表超级管理员，拥有的所有权限
+
+权限字符串缩写：crdwa: create, read, write,delete,admin(设置权限)
+
+super :1.修改zkServer.sh增加管理员
+
+echo stat | nc 127.0.0.1 2181 来查看哪个节点被选择作为follower或者leader
+echo ruok|nc 127.0.0.1 2181 测试是否启动了该Server，若回复imok表示已经启动
+echo dump| nc 127.0.0.1 2181 ,列出未经处理的会话和临时节点。
+echo kill | nc 127.0.0.1 2181 ,关掉server
+
+echo conf | nc 127.0.0.1 2181 ,输出相关服务配置的详细信息。
+echo cons | nc 127.0.0.1 2181 ,列出所有连接到服务器的客户端的完全的连接 / 会话的详细信息。
+echo envi |nc 127.0.0.1 2181 ,输出关于服务环境的详细信息（区别于 conf 命令）。
+
+echo reqs | nc 127.0.0.1 2181 ,列出未经处理的请求。
+echo wchs | nc 127.0.0.1 2181 ,列出服务器 watch 的详细信息。
+echo wchc | nc 127.0.0.1 2181 ,通过 session 列出服务器 watch 的详细信息，它的输出是一个与 watch 相关的会话的列表。
+echo wchp | nc 127.0.0.1 2181 ,通过路径列出服务器 watch 的详细信息。它输出一个与 session 相关的路径。
+
+
+类型定义在枚举CreateMode中：
+	（1）PERSISTENT：持久；
+	（2）PERSISTENT_SEQUENTIAL：持久顺序；
+	（3）EPHEMERAL：临时；
+	（4）EPHEMERAL_SEQUENTIAL：临时顺序。

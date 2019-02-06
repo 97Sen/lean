@@ -1,0 +1,48 @@
+maven :mvn clean package -Dmaven.test.skip=true
+service  network restart 重启虚拟机网络
+ip addr 查看ip地址
+uname -r 查看centos内核版本
+yum update 升级软件包及内核
+yum install 安装docker
+systemctl start docker 启动docker
+systemctl enable docker 将docker服务设为开机启动
+     docker：Failed to start docker.service: Unit not found.
+	   # step 1: 安装必要的一些系统工具
+	   sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+	   # Step 2: 添加软件源信息
+	   sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+	   # Step 3: 更新并安装 Docker-CE
+	   sudo yum makecache fast
+	   sudo yum -y install docker-ce
+	   # Step 4: 开启Docker服务
+	  sudo service docker start
+
+	  docker exec -it 容器id bash 进入容器
+
+	  docker安装mysql容器后，是用navicat连接报client does not support authentication protocol requested by server consider upgrading mysql client
+				#进入容器
+				docker exec -it mysql bash
+				#进入mysql
+				mysql -u root -p
+				#重置密码
+				ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+				ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+	
+Linux：解压gz文件  tar -zxvf 文件名
+        pwd显示当前路径
+输入 su ,输入密码获取root权限
+重启网卡，service network restart
+关闭防火墙 chkconfig iptables off  / on
+
+# 查看防火墙状态
+service iptables status
+# 停止防火墙
+service iptables stop
+# 启动防火墙
+service iptables start
+# 重启防火墙
+service iptables restart
+# 永久关闭防火墙
+chkconfig iptables off
+# 永久关闭后重启
+chkconfig iptables on
