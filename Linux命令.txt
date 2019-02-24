@@ -46,3 +46,5 @@ service iptables restart
 chkconfig iptables off
 # 永久关闭后重启
 chkconfig iptables on
+
+netstat -antp | grep 2181 查看每个ip下的进程
