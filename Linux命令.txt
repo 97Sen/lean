@@ -28,8 +28,11 @@ systemctl enable docker 将docker服务设为开机启动
 				ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 				ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 	
-Linux：解压gz文件  tar -zxvf 文件名
+Linux：解压gz文件 	 tar -zxvf 文件名
+	将tgz文件解压到指定目录
+		tar   -zxvf    test.tgz  -C  指定目录
         pwd显示当前路径
+	将目录A重命名为B  mv A B  例子：将/a目录移动到/b下，并重命名为c  mv /a /b/c
 输入 su ,输入密码获取root权限
 重启网卡，service network restart
 关闭防火墙 chkconfig iptables off  / on
@@ -58,3 +61,5 @@ chkconfig iptables on
 9、*.zip 用 unzip 解压
 
 netstat -antp | grep 2181 查看每个ip下的进程
+
+进入到 usr/local 目录下 执行 vim /etc/profile 查看jdk配置文件
