@@ -1,0 +1,10 @@
+同步八种操作：
+1.locak(锁定)
+2.unlocak(解锁)
+3.read(读锁)
+4.load(载入)
+
+5.use(使用)
+6.assign(赋值)
+7.store(存储)
+8.write(写入)
