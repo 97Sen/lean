@@ -72,3 +72,6 @@ eg
 将会删除/var/log/httpd/access目录以及其下所有文件、文件夹
 删除文件使用实例：rm -f /var/log/httpd/access.log
 将会强制删除/var/log/httpd/access.log这个文件
+
+uname -m 查看ubuntu 是32位还是64位
+cat /etc/issue 查看Ubuntu的版本号
