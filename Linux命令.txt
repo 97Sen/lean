@@ -49,6 +49,8 @@ service iptables restart
 chkconfig iptables off
 # 永久关闭后重启
 chkconfig iptables on
+#访问某个端口
+telnet 192.168.85.128 3306
 
 1、*.tar 用 tar –xvf 解压
 2、*.gz 用 gzip -d或者gunzip 解压
