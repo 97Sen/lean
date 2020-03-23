@@ -1,0 +1,3 @@
+不可变对象：
+	Collections.unmodifiableXXX: Collection、List、Map、Set
+	Guava: ImmutableXXX: Collection、List、Map、Set

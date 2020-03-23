@@ -1,0 +1,12 @@
+docker run -d --hostname my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3.7.7-management
+docker run -d -p 6379:6379 redis:4.0.8
+docker run -d -p 9411:9411 openzipkin/zipkin
+docker build -t springcloud/eureka .
+bash build.sh
+docker rm ÈÝÆ÷id
+docker rmi ed9c93747fe1
+---------------------------
+docker login --username=15918871404 registry.cn-hangzhou.aliyuncs.com
+ocker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/myspring_cloud/spring_cloud:[¾µÏñ°æ±¾ºÅ]
+docker push registry.cn-hangzhou.aliyuncs.com/myspring_cloud/spring_cloud:[¾µÏñ°æ±¾ºÅ]
+---------------------------

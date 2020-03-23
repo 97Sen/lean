@@ -1,0 +1,5 @@
+mvn -Dmaven.test.skip=true -U clean install 强制刷新安装
+
+mvn install:install-file -Dfile=E:\IDEA-Project\SpringClound_Sell\product2\product-client\target\product-client-0.0.1-SNAPSHOT.jar -Dgrou
+pId=com.imooc -DartifactId=product-cleint -Dversion=0.0.1 -Dpackaging=jar 将项目打包成JAR形式保存到本地仓库
+
