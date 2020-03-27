@@ -1,3 +1,25 @@
 不可变对象：
 	Collections.unmodifiableXXX: Collection、List、Map、Set
 	Guava: ImmutableXXX: Collection、List、Map、Set
+Atomic:
+	atomic类是通过自旋CAS操作volatile变量实现的.
+    缺点：ABA问题，对于一个旧的变量值A,线程2将A的值改成B又改成可A,此时线程1通过CAS看到A并没有变化，但实际A已经发生了变化。
+CAS:    在计算机科学中，比较和交换（Conmpare And Swap）是用于实现多线程同步的原子指令。
+
+ 	CAS可以有效的提升并发的效率，但同时也会引入ABA问题。
+
+  	如线程1从内存X中取出A，这时候另一个线程2也从内存X中取出A，并且线程2进行了一些操作将内存X中的值变成了B，然后线程2又将内存X中的数据变成A，这时候线程1进行CAS操作发现内存X中仍然是A，然后线程1操作成功。虽然线程1的CAS操作成功，但是整个过程就是有问题的。比如链表的头在变化了两次后恢复了原值，但是不代表链表就没有变化。
+
+  	所以JAVA中提供了AtomicStampedReference/AtomicMarkableReference来处理会发生ABA问题的场景，主要是在对象中额外再增加一个标记来标识对象是否有过变更
+时间转化：
+	org.joda.time.format.DateTimeFormatter
+	SimpaleDateFormat:   在多线程中使用时要每次生成一个新的变量使用
+
+线程安全的容器：
+ ArrayList -> Vector,Stack
+HashMap  -> HashTable(key, value不能为null)
+Collections.synchronizedXXX(List, Set, Map)
+    并发容器 J.U.C：
+ArrayList -> CopyOnWriteArrayList
+HashSet、TreeSet -> CopyOnWriteArraySet  ConcurrentSkipListSet
+HashMap、TreeMap -> ConcurrentHashMap、ConcurrentSkipListSet
