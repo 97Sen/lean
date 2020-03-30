@@ -1,0 +1,15 @@
+单线程模型
+数据结构：
+	1、BitMap： 位图
+	2、HyperLogLog:  超小内存唯一值的计数
+	3、GEO: 地理信息定位
+	4、String
+	5、Hash Tables
+	6、Linked Lists
+	7、Sets
+	8、Sorted Sets
+功能：
+	1、发布订阅
+	2、事务
+	3、Lua脚本
+	4、 pipeline
