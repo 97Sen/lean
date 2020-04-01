@@ -1,9 +1,11 @@
 ²»¿É±ä¶ÔÏó£º
 	Collections.unmodifiableXXX: Collection¡¢List¡¢Map¡¢Set
 	Guava: ImmutableXXX: Collection¡¢List¡¢Map¡¢Set
+---------------------------------------------------------
 Atomic:
 	atomicÀàÊÇÍ¨¹ý×ÔÐýCAS²Ù×÷volatile±äÁ¿ÊµÏÖµÄ.
     È±µã£ºABAÎÊÌâ£¬¶ÔÓÚÒ»¸ö¾ÉµÄ±äÁ¿ÖµA,Ïß³Ì2½«AµÄÖµ¸Ä³ÉBÓÖ¸Ä³É¿ÉA,´ËÊ±Ïß³Ì1Í¨¹ýCAS¿´µ½A²¢Ã»ÓÐ±ä»¯£¬µ«Êµ¼ÊAÒÑ¾­·¢ÉúÁË±ä»¯¡£
+---------------------------------------------------------
 CAS:    ÔÚ¼ÆËã»ú¿ÆÑ§ÖÐ£¬±È½ÏºÍ½»»»£¨Conmpare And Swap£©ÊÇÓÃÓÚÊµÏÖ¶àÏß³ÌÍ¬²½µÄÔ­×ÓÖ¸Áî¡£
 
  	CAS¿ÉÒÔÓÐÐ§µÄÌáÉý²¢·¢µÄÐ§ÂÊ£¬µ«Í¬Ê±Ò²»áÒýÈëABAÎÊÌâ¡£
@@ -11,10 +13,11 @@ CAS:    ÔÚ¼ÆËã»ú¿ÆÑ§ÖÐ£¬±È½ÏºÍ½»»»£¨Conmpare And Swap£©ÊÇÓÃÓÚÊµÏÖ¶àÏß³ÌÍ¬²½µÄÔ­×
   	ÈçÏß³Ì1´ÓÄÚ´æXÖÐÈ¡³öA£¬ÕâÊ±ºòÁíÒ»¸öÏß³Ì2Ò²´ÓÄÚ´æXÖÐÈ¡³öA£¬²¢ÇÒÏß³Ì2½øÐÐÁËÒ»Ð©²Ù×÷½«ÄÚ´æXÖÐµÄÖµ±ä³ÉÁËB£¬È»ºóÏß³Ì2ÓÖ½«ÄÚ´æXÖÐµÄÊý¾Ý±ä³ÉA£¬ÕâÊ±ºòÏß³Ì1½øÐÐCAS²Ù×÷·¢ÏÖÄÚ´æXÖÐÈÔÈ»ÊÇA£¬È»ºóÏß³Ì1²Ù×÷³É¹¦¡£ËäÈ»Ïß³Ì1µÄCAS²Ù×÷³É¹¦£¬µ«ÊÇÕû¸ö¹ý³Ì¾ÍÊÇÓÐÎÊÌâµÄ¡£±ÈÈçÁ´±íµÄÍ·ÔÚ±ä»¯ÁËÁ½´Îºó»Ö¸´ÁËÔ­Öµ£¬µ«ÊÇ²»´ú±íÁ´±í¾ÍÃ»ÓÐ±ä»¯¡£
 
   	ËùÒÔJAVAÖÐÌá¹©ÁËAtomicStampedReference/AtomicMarkableReferenceÀ´´¦Àí»á·¢ÉúABAÎÊÌâµÄ³¡¾°£¬Ö÷ÒªÊÇÔÚ¶ÔÏóÖÐ¶îÍâÔÙÔö¼ÓÒ»¸ö±ê¼ÇÀ´±êÊ¶¶ÔÏóÊÇ·ñÓÐ¹ý±ä¸ü
+---------------------------------------------------------
 Ê±¼ä×ª»¯£º
 	org.joda.time.format.DateTimeFormatter
 	SimpaleDateFormat:   ÔÚ¶àÏß³ÌÖÐÊ¹ÓÃÊ±ÒªÃ¿´ÎÉú³ÉÒ»¸öÐÂµÄ±äÁ¿Ê¹ÓÃ
-
+---------------------------------------------------------
 Ïß³Ì°²È«µÄÈÝÆ÷£º
  ArrayList -> Vector,Stack
 HashMap  -> HashTable(key, value²»ÄÜÎªnull)
@@ -23,9 +26,40 @@ Collections.synchronizedXXX(List, Set, Map)
 ArrayList -> CopyOnWriteArrayList
 HashSet¡¢TreeSet -> CopyOnWriteArraySet  ConcurrentSkipListSet
 HashMap¡¢TreeMap -> ConcurrentHashMap¡¢ConcurrentSkipListSet
-
+---------------------------------------------------------
 ReentrantLock Óë synchronized»ù±¾ÏàÍ¬:
       ReentrantLockÌØÓÐµÄ¹¦ÄÜ:
 	1¡¢¿ÉÖ¸¶¨ÊÇ¹«Æ½Ëø»¹ÊÇ·Ç¹«Æ½Ëø
 	2¡¢Ìá¹©ÁËÒ»¸öConditionÀà£¬¿ÉÒÔ·Ö×é»½ÐÑÐèÒª»½ÐÑµÄÏß³Ì
 	3¡¢Ìá¹©ÄÜ¹»ÖÐ¶ÏµÈ´ýËøµÄÏß³Ì»úÖÆ£¬ lock.lockInterruptibly()
+---------------------------------------------------------
+BlockingQueue ×èÈû¶ÓÁÐ£º
+	1¡¢ArrayBlockingQueue
+	2¡¢DelayQueue
+	3¡¢LinkedBlockingQueue
+	4¡¢PriorityBlockingQueue
+	5¡¢SynchronousQueue
+---------------------------------------------------------
+new ThreadµÄ±×¶ËÈçÏÂ£º
+	a. Ã¿´Înew ThreadÐÂ½¨¶ÔÏóÐÔÄÜ²î¡£
+	b. Ïß³ÌÈ±·¦Í³Ò»¹ÜÀí£¬¿ÉÄÜÎÞÏÞÖÆÐÂ½¨Ïß³Ì£¬Ïà»¥Ö®¼ä¾ºÕù£¬¼°¿ÉÄÜÕ¼ÓÃ¹ý¶àÏµÍ³×ÊÔ´µ¼ÖÂËÀ»ú»òoom¡£
+	c. È±·¦¸ü¶à¹¦ÄÜ£¬Èç¶¨Ê±Ö´ÐÐ¡¢¶¨ÆÚÖ´ÐÐ¡¢Ïß³ÌÖÐ¶Ï¡£
+Ïà±Ènew Thread£¬JavaÌá¹©µÄËÄÖÖÏß³Ì³ØµÄºÃ´¦ÔÚÓÚ£º
+	a. ÖØÓÃ´æÔÚµÄÏß³Ì£¬¼õÉÙ¶ÔÏó´´½¨¡¢ÏûÍöµÄ¿ªÏú£¬ÐÔÄÜ¼Ñ¡£
+	b. ¿ÉÓÐÐ§¿ØÖÆ×î´ó²¢·¢Ïß³ÌÊý£¬Ìá¸ßÏµÍ³×ÊÔ´µÄÊ¹ÓÃÂÊ£¬Í¬Ê±±ÜÃâ¹ý¶à×ÊÔ´¾ºÕù£¬±ÜÃâ¶ÂÈû¡£
+	c. Ìá¹©¶¨Ê±Ö´ÐÐ¡¢¶¨ÆÚÖ´ÐÐ¡¢µ¥Ïß³Ì¡¢²¢·¢Êý¿ØÖÆµÈ¹¦ÄÜ
+	JavaÍ¨¹ýExecutorsÌá¹©ËÄÖÖÏß³Ì³Ø£¬·Ö±ðÎª£º
+newCachedThreadPool´´½¨Ò»¸ö¿É»º´æÏß³Ì³Ø£¬Èç¹ûÏß³Ì³Ø³¤¶È³¬¹ý´¦ÀíÐèÒª£¬¿ÉÁé»î»ØÊÕ¿ÕÏÐÏß³Ì£¬ÈôÎÞ¿É»ØÊÕ£¬ÔòÐÂ½¨Ïß³Ì¡£
+newFixedThreadPool ´´½¨Ò»¸ö¶¨³¤Ïß³Ì³Ø£¬¿É¿ØÖÆÏß³Ì×î´ó²¢·¢Êý£¬³¬³öµÄÏß³Ì»áÔÚ¶ÓÁÐÖÐµÈ´ý¡£
+newScheduledThreadPool ´´½¨Ò»¸ö¶¨³¤Ïß³Ì³Ø£¬Ö§³Ö¶¨Ê±¼°ÖÜÆÚÐÔÈÎÎñÖ´ÐÐ¡£
+newSingleThreadExecutor ´´½¨Ò»¸öµ¥Ïß³Ì»¯µÄÏß³Ì³Ø£¬ËüÖ»»áÓÃÎ¨Ò»µÄ¹¤×÷Ïß³ÌÀ´Ö´ÐÐÈÎÎñ£¬±£Ö¤ËùÓÐÈÎÎñ°´ÕÕÖ¸¶¨Ë³Ðò(FIFO, LIFO, ÓÅÏÈ¼¶)Ö´ÐÐ¡£
+---------------------------------------------------------
+²¢·¢Êµ¼ù£º
+  1¡¢Ê¹ÓÃ±¾µØ±äÁ¿
+  2¡¢Ê¹ÓÃ²»¿É±äÀà
+  3¡¢×îÐ¡»¯ËøµÄ×÷ÓÃÓò·¶Î§£º S=1/(1-a+a/n)
+  4¡¢Ê¹ÓÃÏß³Ì³ØµÄExecutor£¬¶ø²»ÊÇÖ±½Ónew ThreadÖ´ÐÐ
+  5¡¢Äþ¿ÉÊ¹ÓÃÍ¬²½Ò²²»ÒªÊ¹ÓÃÏß³ÌµÄwaitºÍnotify
+  6¡¢Ê¹ÓÃBlockingQueueÊµÏÖÉú²ú-Ïû·ÑÄ£Ê½
+  7¡¢Ê¹ÓÃSemaphore´´½¨ÓÐ½çµÄ·ÃÎÊ
+---------------------------------------------------------

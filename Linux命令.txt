@@ -77,3 +77,7 @@ eg
 
 uname -m 查看ubuntu 是32位还是64位
 cat /etc/issue 查看Ubuntu的版本号
+
+--
+查看文件内容并清除注释跟空格，以及重定向到redis-6382.cong文件中 
+cat redis-6381.conf | grep -v "#" | grep -v "^$" > redis-6382.conf

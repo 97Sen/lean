@@ -13,3 +13,12 @@
 	2、事务
 	3、Lua脚本
 	4、 pipeline
+命令：
+redis-server 启动服务
+redis-cli -h 127.0.0.1 -p 6379 连接服务
+redis-server --port 6380 指定启动服务的端口
+错误：
+1、在Linux环境下安装失败可能是没有安装C++环境： yum install cpp  ， yum install gcc  
+
+2、In file included from adlist.c:34:0: zmalloc.h:50:31: 致命错误：jemalloc/jemalloc.h：没有那个文件或目录
+     执行：make MALLOC=libc 参考网站：https://www.cnblogs.com/Ai-Hen-Jiao-zhi/p/10127731.html
